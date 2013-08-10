@@ -10,4 +10,7 @@ package Broker;
  */
 public class DatabaseBroker
 {
+    private String host = "jdbc:mysql://localhost:3306/asset management";
+    private String username = "root";
+    private String password = "P@$$w0rd";
 }

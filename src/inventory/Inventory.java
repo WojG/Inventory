@@ -36,46 +36,31 @@ public class Inventory
 
             //Iterate through each rows from first sheet
             Iterator<Row> rowIterator = my_worksheet.iterator();
-            /*   FileWriter my_csv = new FileWriter("convertedCSVFile.csv");
+            /*  FileWriter my_csv = new FileWriter("convertedCSVFile.csv");
              CSVWriter my_csv_output = new CSVWriter(my_csv);*/
-            ArrayList<String> header = new ArrayList();
-            ArrayList<String> inv = new ArrayList();
-            int i = 0;
+
             while (rowIterator.hasNext())
             {
                 Row row = rowIterator.next();
 
                 //For each row, iterate through each columns
                 Iterator<Cell> cellIterator = row.cellIterator();
+                System.out.println();
                 while (cellIterator.hasNext())
                 {
                     //Fetch CELL
                     Cell cell = cellIterator.next();
 
-                    if (row.getRowNum() == 0)
+                    switch (cell.getCellType())
                     {
-                        if (cell.getCellType() == Cell.CELL_TYPE_STRING)
-                        {
-                            header.add(cell.getStringCellValue());
-                        }                        
+                        case Cell.CELL_TYPE_STRING:
+                            System.out.print(cell.getStringCellValue() + " | ");
+                            break;
+                        case Cell.CELL_TYPE_NUMERIC:
+                            System.out.print(cell.getNumericCellValue() + " | ");
+                            break;
                     }
-                    
-                    else 
-                    {
-                        switch (cell.getCellType())
-                        {
-                            case Cell.CELL_TYPE_STRING:
-                                inv.add(cell.getStringCellValue());
-                                break;
-                            case Cell.CELL_TYPE_NUMERIC:
-                               // inv.add(cell.getNumericCellValue());
-                                break;                            
-                        }
-                    }
-                    System.out.println(header.get(i) + " -> " + header.size());
-                    i++;
                 }
-
             }
             //      my_csv_output.close(); //close the CSV file
             //we created our file..!!
