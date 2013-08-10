@@ -26,7 +26,9 @@ public class DatabaseBroker
 
     public DatabaseBroker()
     {
+        createNewConnection();
         createConnectionPool();
+
     }
 
     // establish connection with database
@@ -40,7 +42,6 @@ public class DatabaseBroker
         }
         catch (SQLException err)
         {
-
             System.out.println("Error trying to establish connection with db: " + err.getMessage());
             connected = false;
         }
@@ -50,11 +51,16 @@ public class DatabaseBroker
 
     private void createConnectionPool()
     {
-        while (connectionPool.size() < MAX_POOL)
+        if (connected)
         {
-            connectionPool.add(createNewConnection());
+            while (connectionPool.size() < MAX_POOL)
+            {
+                connectionPool.add(createNewConnection());
+            }
+            System.out.println("Pool allocation: " + connectionPool.size());
         }
-        System.out.println("Pool allocation: " + connectionPool.size());
+        else 
+            System.out.println("Pool allocation: " + connectionPool.size());
     }
     // use connection
     // put back connection
