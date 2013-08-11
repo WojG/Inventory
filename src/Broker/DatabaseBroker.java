@@ -28,7 +28,6 @@ public class DatabaseBroker
     {
         createNewConnection();
         createConnectionPool();
-
     }
 
     // establish connection with database
@@ -37,7 +36,7 @@ public class DatabaseBroker
         Connection connect = null;
         try
         {
-            connect = DriverManager.getConnection(host, username, username);
+            connect = DriverManager.getConnection(host, username, password);
             connected = true;
         }
         catch (SQLException err)
@@ -47,8 +46,8 @@ public class DatabaseBroker
         }
         return connect;
     }
-    // create specified number of connections
 
+    // create specified number of connections
     private void createConnectionPool()
     {
         if (connected)
@@ -57,11 +56,32 @@ public class DatabaseBroker
             {
                 connectionPool.add(createNewConnection());
             }
+            System.out.println("Connection pool created: " + connectionPool.size());
+        }
+        else
+        {
             System.out.println("Pool allocation: " + connectionPool.size());
         }
-        else 
-            System.out.println("Pool allocation: " + connectionPool.size());
     }
+
     // use connection
+    public Connection use()
+    {
+        Connection connect = null;
+        if (connectionPool.size() > 0) 
+        {
+             connect = connectionPool.poll();
+             System.out.println("Use: " + connectionPool.size());
+        }                
+        else 
+            System.out.println("Connection pool is empty. Check database.");        
+        return connect;
+    }
+
     // put back connection
+    public void release(Connection connect)
+    {
+        connectionPool.add(connect);
+        System.out.println("Release: " + connectionPool.size());
+    }
 }

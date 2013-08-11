@@ -5,6 +5,7 @@
 package inventory;
 
 import Broker.DatabaseBroker;
+import java.sql.Connection;
 
 /**
  *
@@ -19,5 +20,7 @@ public class Inventory
     public static void main(String[] args)
     {
         DatabaseBroker dbB = new DatabaseBroker();
+        Connection connect = dbB.use();
+        dbB.release(connect);
     }
 }
