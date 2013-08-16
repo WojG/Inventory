@@ -4,11 +4,8 @@
  */
 package inventory;
 
-import Broker.DatabaseBroker;
 import Broker.DeviceBroker;
 import Container.Device;
-import com.mysql.jdbc.exceptions.DeadlockTimeoutRollbackMarker;
-import java.sql.Connection;
 
 /**
  *
@@ -24,7 +21,7 @@ public class Inventory
     {
         DeviceBroker db = DeviceBroker.getDeviceBroker();
         
-        Device d = new Device(0,"HP", "Compaq","CAC","TE1226-01PC","TE1226","Staff",2010);
+        Device d = new Device(0,"HP","Compaq","Test","Test","TE1226","Staff",1126,"2013/11/12","2016/11/12",36);
         
         int a = db.addDevice(d);
         
