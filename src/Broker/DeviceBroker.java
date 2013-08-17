@@ -22,7 +22,7 @@ public class DeviceBroker
     private static DeviceBroker dBroker = null;
     DatabaseBroker conn = new DatabaseBroker();
 
-    private DeviceBroker()
+    protected DeviceBroker()
     {
     }
 
@@ -36,17 +36,18 @@ public class DeviceBroker
     }
 
     public int addDevice(Object o)
-    {
-        PreparedStatement ps = null;
-        int numRowsAffected = 0;
+    {     
+        int rowsAdded = 0;
         try
         {
             Connection connect = conn.use();
+           
             Device dev = (Device) o;
             
             String SQL = "INSERT INTO device(Brand, Model, Serial_Number, Computer_Name, Location, Asset_Tag, Cost, Start_Date, End_Date, Term) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            ps = connect.prepareStatement(SQL);
+            PreparedStatement ps = connect.prepareStatement(SQL);
+            
             ps.setString(1, dev.getBrand());
             ps.setString(2, dev.getModel());
             ps.setString(3, dev.getSerialNumber());
@@ -58,13 +59,13 @@ public class DeviceBroker
             ps.setDate(9, dev.getEndDate());
             ps.setInt(10, dev.getTerm());
             
-            numRowsAffected = ps.executeUpdate();
+            rowsAdded = ps.executeUpdate();
         }
         catch (SQLException ex)
         {
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
-                
-        return numRowsAffected;
+        
+        return rowsAdded;
     }
 }
