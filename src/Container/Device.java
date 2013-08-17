@@ -13,14 +13,13 @@ import java.sql.Date;
 public class Device
 {
 
-    private int deviceID, lease, cost, term;
-    private String brand, model, serialNumber, compName, location, assetTag, start, end;
-   // private Date start, end;
+    private int lease, cost, term;
+    private String brand, model, serialNumber, compName, location, assetTag;
+    private Date start, end;
 
-    public Device(int deviceID, String brand, String model, String serialNumber,
-            String compName, String location, String assetTag, int cost, String start, String end, int term)
+    public Device(String brand, String model, String serialNumber,
+            String compName, String location, String assetTag, int cost, Date start, Date end, int term)
     {
-        this.deviceID = deviceID;
         this.brand = brand;
         this.model = model;
         this.serialNumber = serialNumber;
@@ -31,16 +30,6 @@ public class Device
         this.start = start;
         this.end = end;
         this.term = term;
-    }
-
-    public void setDeviceID(int deviceID)
-    {
-        this.deviceID = deviceID;
-    }
-
-    public int getDeviceID()
-    {
-        return deviceID;
     }
 
     public void setBrand(String brand)
@@ -113,22 +102,22 @@ public class Device
         return cost;
     }
 
-    public void setStartDate(String start)
+    public void setStartDate(Date start)
     {
         this.start = start;
     }
 
-    public String getStartDate()
+    public Date getStartDate()
     {
         return start;
     }
 
-    public void setEndDate(String end)
+    public void setEndDate(Date end)
     {
         this.end = end;
     }
 
-    public String getEndDate()
+    public Date getEndDate()
     {
         return end;
     }

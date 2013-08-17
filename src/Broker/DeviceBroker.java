@@ -44,20 +44,19 @@ public class DeviceBroker
             Connection connect = conn.use();
             Device dev = (Device) o;
             
-            String SQL = "INSERT INTO device(deviceID, Brand, Model, Serial_Number, Computer_Name, Location, Asset_Tag, Cost, Start_Date, End_Date, Term) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO device(Brand, Model, Serial_Number, Computer_Name, Location, Asset_Tag, Cost, Start_Date, End_Date, Term) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             ps = connect.prepareStatement(SQL);
-            ps.setInt(1, dev.getDeviceID());
-            ps.setString(2, dev.getBrand());
-            ps.setString(3, dev.getModel());
-            ps.setString(4, dev.getSerialNumber());
-            ps.setString(5, dev.getComputerName());
-            ps.setString(6, dev.getLocation());
-            ps.setString(7, dev.getAssetTag());
-            ps.setInt(8, dev.getCost());
-            ps.setString(9, dev.getStartDate());
-            ps.setString(10, dev.getEndDate());
-            ps.setInt(11, dev.getTerm());
+            ps.setString(1, dev.getBrand());
+            ps.setString(2, dev.getModel());
+            ps.setString(3, dev.getSerialNumber());
+            ps.setString(4, dev.getComputerName());
+            ps.setString(5, dev.getLocation());
+            ps.setString(6, dev.getAssetTag());
+            ps.setInt(7, dev.getCost());
+            ps.setDate(8, dev.getStartDate());
+            ps.setDate(9, dev.getEndDate());
+            ps.setInt(10, dev.getTerm());
             
             numRowsAffected = ps.executeUpdate();
         }

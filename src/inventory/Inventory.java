@@ -6,6 +6,9 @@ package inventory;
 
 import Broker.DeviceBroker;
 import Container.Device;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.MonthDV;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.YearDV;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -21,7 +24,11 @@ public class Inventory
     {
         DeviceBroker db = DeviceBroker.getDeviceBroker();
         
-        Device d = new Device(0,"HP","Compaq","Test","Test","TE1226","Staff",1126,"2013/11/12","2016/11/12",36);
+        int year = 2013, month = 11, day = 12;
+        DateTime dt = new DateTime(year, month, day, 12, 0, 0, 000);
+        
+        
+        Device d = new Device("HP","Compaq","Test","Test","TE1226","Staff",1126,"2013/11/12","2016/11/12",36);
         
         int a = db.addDevice(d);
         
