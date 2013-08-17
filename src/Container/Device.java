@@ -13,7 +13,7 @@ import java.sql.Date;
 public class Device
 {
 
-    private int lease, cost, term;
+    private int cost, term;
     private String brand, model, serialNumber, compName, location, assetTag;
     private Date start, end;
 
@@ -121,12 +121,12 @@ public class Device
     {
         return end;
     }
-    
+
     public void setTerm(int term)
     {
         this.term = term;
     }
-    
+
     public int getTerm()
     {
         return term;
