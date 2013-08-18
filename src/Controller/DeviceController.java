@@ -14,26 +14,48 @@ import java.sql.Date;
  */
 public class DeviceController
 {
+
     public DeviceController()
     {
-        
     }
-    
-    public void addDevice(String brand, String model, String serialNumber, 
-                          String compName, String location, String assetTag,
-                          int cost, Date start, Date end, int term) 
+
+    public void addDevice(String brand, String model, String serialNumber,
+            String compName, String location, String assetTag,
+            int cost, Date start, Date end, int term)
     {
-        Device dev = new Device(brand, model, serialNumber,compName,
-                                location,assetTag,cost,start,end,term);
-        
+        Device dev = new Device(brand, model, serialNumber, compName,
+                location, assetTag, cost, start, end, term);
+
         DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
-        
-        if (dBroker.addDevice(dev) > 0) 
+
+        if (dBroker.addDevice(dev) > 0)
+        {
+            System.out.println("Row Added Successfully.");
+        }
+        else
+        {
+            System.out.println("Error in add device broker.");
+        }
+    }
+
+    public void updateDevice(int dID, String brand, String model, String serialNumber,
+            String compName, String location, String assetTag,
+            int cost, Date start, Date end, int term)
+    {
+        Device dev = new Device(brand, model, serialNumber, compName, location,
+                assetTag, cost, start, end, term);
+
+        DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
+
+        if (dBroker.updateDevice(dID, dev) > 0)
         {
             System.out.println("Row Added Successfully.");
         }
         
-        else
-            System.out.println("Error in device broker.");        
+        else   
+        {
+            System.out.println("Error in update device broker");
+        }
+
     }
 }

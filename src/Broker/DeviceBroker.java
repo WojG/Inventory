@@ -72,7 +72,7 @@ public class DeviceBroker
         return rowsAdded;
     }
     
-    public int updateDevice(int dID)
+    public int updateDevice(int dID, Object o)
     {
         int rowsUpdated = 0;
         try
@@ -81,10 +81,10 @@ public class DeviceBroker
             
             Device dev = (Device) o;
             
-            String SQL = "UPDATE device SET Brand = ?, Model = ?, Serial_Number = ?,"
-                       + "Computer_Name = ?, Location = ?, Asset_Tag = ?, Cost = ?, "
-                       + "Start_Date = ?, End_Date = ?, Term = ?"
-                       + "WHERE deviceID = " + dID + ""; 
+            String SQL = "UPDATE device SET Brand = ?, Model = ?, Serial_Number = ?, "
+                                         + "Computer_Name = ?, Location = ?, Asset_Tag = ?, Cost = ?, "
+                                         + "Start_Date = ?, End_Date = ?, Term = ? "
+                       + "WHERE deviceID = " + dID + ";"; 
             
             CallableStatement csUpdate = connect.prepareCall(SQL);
             
