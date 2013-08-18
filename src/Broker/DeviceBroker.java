@@ -36,18 +36,18 @@ public class DeviceBroker
     }
 
     public int addDevice(Object o)
-    {     
+    {
         int rowsAdded = 0;
         try
         {
             Connection connect = conn.use();
-           
+
             Device dev = (Device) o;
-            
+
             String SQL = "INSERT INTO device(Brand, Model, Serial_Number, Computer_Name, Location, Asset_Tag, Cost, Start_Date, End_Date, Term) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = connect.prepareStatement(SQL);
-            
+
             ps.setString(1, dev.getBrand());
             ps.setString(2, dev.getModel());
             ps.setString(3, dev.getSerialNumber());
@@ -58,9 +58,9 @@ public class DeviceBroker
             ps.setDate(8, dev.getStartDate());
             ps.setDate(9, dev.getEndDate());
             ps.setInt(10, dev.getTerm());
-            
+
             rowsAdded = ps.executeUpdate();
-            
+
             ps.close();
             conn.release(connect);
         }
@@ -68,26 +68,33 @@ public class DeviceBroker
         {
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return rowsAdded;
     }
-    
+
     public int updateDevice(int dID, Object o)
     {
         int rowsUpdated = 0;
         try
         {
             Connection connect = conn.use();
-            
+
             Device dev = (Device) o;
-            
-            String SQL = "UPDATE device SET Brand = ?, Model = ?, Serial_Number = ?, "
-                                         + "Computer_Name = ?, Location = ?, Asset_Tag = ?, Cost = ?, "
-                                         + "Start_Date = ?, End_Date = ?, Term = ? "
-                       + "WHERE deviceID = " + dID + ";"; 
-            
+
+            String SQL = "UPDATE device SET Brand = ?, "
+                                         + "Model = ?, "
+                                         + "Serial_Number = ?, "
+                                         + "Computer_Name = ?, "
+                                         + "Location = ?, "
+                                         + "Asset_Tag = ?, "
+                                         + "Cost = ?, "
+                                         + "Start_Date = ?, "
+                                         + "End_Date = ?, "
+                                         + "Term = ? "
+                       + "WHERE deviceID = " + dID + ";";
+
             CallableStatement csUpdate = connect.prepareCall(SQL);
-            
+
             csUpdate.setString(1, dev.getBrand());
             csUpdate.setString(2, dev.getModel());
             csUpdate.setString(3, dev.getSerialNumber());
@@ -98,9 +105,9 @@ public class DeviceBroker
             csUpdate.setDate(8, dev.getStartDate());
             csUpdate.setDate(9, dev.getEndDate());
             csUpdate.setInt(10, dev.getTerm());
-            
+
             rowsUpdated = csUpdate.executeUpdate();
-            
+
             csUpdate.close();
             conn.release(connect);
         }
@@ -108,7 +115,31 @@ public class DeviceBroker
         {
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return rowsUpdated;
+    }
+    
+    public int deleteDevice(int dID)
+    {
+        int rowsDeleted = 0;
+        try
+        {
+            Connection connect = conn.use();
+
+            String SQL = "DELETE FROM device WHERE deviceID = " + dID + ";";
+
+            PreparedStatement psDelete = connect.prepareCall(SQL);
+
+            rowsDeleted = psDelete.executeUpdate();
+
+            psDelete.close();
+            conn.release(connect);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rowsDeleted;
     }
 }

@@ -49,12 +49,28 @@ public class DeviceController
 
         if (dBroker.updateDevice(dID, dev) > 0)
         {
-            System.out.println("Row Added Successfully.");
+            System.out.println("Row Updated Successfully.");
         }
         
         else   
         {
             System.out.println("Error in update device broker");
+        }
+
+    }
+    
+    public void deleteDevice(int dID)
+    {
+        DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
+
+        if (dBroker.deleteDevice(dID) > 0)
+        {
+            System.out.println("Row Deleted Successfully.");
+        }
+        
+        else   
+        {
+            System.out.println("Error in delete device broker");
         }
 
     }

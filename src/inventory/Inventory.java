@@ -42,11 +42,11 @@ public class Inventory
         int term = 36;
         
         DeviceController dc = new DeviceController();
-       // dc.addDevice(brand, model, compName, compName, location, assetTag, cost, start, end, term);
+       // dc.addDevice(brand, model, sn, compName, location, assetTag, cost, start, end, term);
         
-        String brandNew = "Lenovo";
+       // String brandNew = "Lenovo";
         
-        dc.updateDevice(2, brandNew, model, compName, compName, location, assetTag, cost, start, end, term);
-        
+       // dc.updateDevice(2, brandNew, model, sn, compName, location, assetTag, cost, start, end, term);
+       dc.deleteDevice(2);
     }
 }
