@@ -5,6 +5,8 @@
 package Controller;
 
 import Broker.DeviceBroker;
+import Container.Device;
+import java.sql.Date;
 
 /**
  *
@@ -17,11 +19,16 @@ public class DeviceController
         
     }
     
-    public void addDevice(Object o) 
+    public void addDevice(String brand, String model, String serialNumber, 
+                          String compName, String location, String assetTag,
+                          int cost, Date start, Date end, int term) 
     {
+        Device dev = new Device(brand, model, serialNumber,compName,
+                                location,assetTag,cost,start,end,term);
+        
         DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
         
-        if (dBroker.addDevice(o) > 0) 
+        if (dBroker.addDevice(dev) > 0) 
         {
             System.out.println("Row Added Successfully.");
         }

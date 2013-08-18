@@ -4,10 +4,8 @@
  */
 package inventory;
 
-import Broker.DeviceBroker;
-import Container.Device;
-import com.sun.org.apache.xerces.internal.impl.dv.xs.MonthDV;
-import com.sun.org.apache.xerces.internal.impl.dv.xs.YearDV;
+import Controller.DeviceController;
+import java.sql.Date;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -30,12 +28,22 @@ public class Inventory
         
         DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd");
         
+        Date sqlDate = new Date(dt.getMillis());
+        
+        String brand = "HP";
+        String model = "Compaq";
+        String sn = "Test";
+        String compName = "Test";
+        String location = "TE1226";
+        String assetTag = "Staff";
+        int cost = 1126;
+        Date start = sqlDate;
+        Date end = sqlDate;
+        int term = 36;
+        
+        DeviceController dc = new DeviceController();
+        dc.addDevice(brand, model, compName, compName, location, assetTag, cost, start, end, term);
         
         
-      //  Device d = new Device("HP","Compaq","Test","Test","TE1226","Staff",1126,"2013/11/12","2016/11/12",36);
-        
-      //  int a = db.addDevice(d);
-        
-     //   System.out.println("Rows affected: " + a);
     }
 }
