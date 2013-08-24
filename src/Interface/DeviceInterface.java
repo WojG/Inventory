@@ -4,8 +4,12 @@
  */
 package Interface;
 
+import Controller.DeviceController;
+import Controller.DeviceModelController;
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -14,13 +18,25 @@ import net.miginfocom.swing.MigLayout;
 public class DeviceInterface
 {
     private JPanel devicePanel;
+    private JTable table;
+    private JScrollPane scrollPane;
     
     public DeviceInterface()
     {
-        devicePanel = new JPanel(new MigLayout());
+        devicePanel = new JPanel(new BorderLayout());
         
+        DeviceController dc = new DeviceController();
+        
+        table = new JTable(new DeviceModelController(dc.getDevice()));
+        
+        scrollPane = new JScrollPane(table);
     }
     
+    public JPanel displayTable()
+    {
+        devicePanel.add(scrollPane);
+        return devicePanel;
+    }
     
     
 }

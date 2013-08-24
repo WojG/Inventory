@@ -5,7 +5,10 @@
 package inventory;
 
 import Controller.DeviceController;
+import Interface.DeviceInterface;
+import Interface.Interface;
 import java.sql.Date;
+import javax.swing.SwingUtilities;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -41,12 +44,21 @@ public class Inventory
         Date end = sqlDate;
         int term = 36;
         
-        DeviceController dc = new DeviceController();
+        //DeviceController dc = new DeviceController();
        // dc.addDevice(brand, model, sn, compName, location, assetTag, cost, start, end, term);
         
        // String brandNew = "Lenovo";
         
        // dc.updateDevice(2, brandNew, model, sn, compName, location, assetTag, cost, start, end, term);
-       dc.deleteDevice(2);
+      // dc.deleteDevice(2);
+        
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                Interface i = new Interface();
+                i.createAndShowGUI();
+            }
+        });
     }
 }

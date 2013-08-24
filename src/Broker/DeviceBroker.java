@@ -8,7 +8,10 @@ import Container.Device;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,22 +96,22 @@ public class DeviceBroker
                                          + "Term = ? "
                        + "WHERE deviceID = " + dID + ";";
 
-            CallableStatement csUpdate = connect.prepareCall(SQL);
+            PreparedStatement psUpdate = connect.prepareCall(SQL);
 
-            csUpdate.setString(1, dev.getBrand());
-            csUpdate.setString(2, dev.getModel());
-            csUpdate.setString(3, dev.getSerialNumber());
-            csUpdate.setString(4, dev.getComputerName());
-            csUpdate.setString(5, dev.getLocation());
-            csUpdate.setString(6, dev.getAssetTag());
-            csUpdate.setInt(7, dev.getCost());
-            csUpdate.setDate(8, dev.getStartDate());
-            csUpdate.setDate(9, dev.getEndDate());
-            csUpdate.setInt(10, dev.getTerm());
+            psUpdate.setString(1, dev.getBrand());
+            psUpdate.setString(2, dev.getModel());
+            psUpdate.setString(3, dev.getSerialNumber());
+            psUpdate.setString(4, dev.getComputerName());
+            psUpdate.setString(5, dev.getLocation());
+            psUpdate.setString(6, dev.getAssetTag());
+            psUpdate.setInt(7, dev.getCost());
+            psUpdate.setDate(8, dev.getStartDate());
+            psUpdate.setDate(9, dev.getEndDate());
+            psUpdate.setInt(10, dev.getTerm());
 
-            rowsUpdated = csUpdate.executeUpdate();
+            rowsUpdated = psUpdate.executeUpdate();
 
-            csUpdate.close();
+            psUpdate.close();
             conn.release(connect);
         }
         catch (SQLException ex)
@@ -141,5 +144,34 @@ public class DeviceBroker
         }
 
         return rowsDeleted;
+    }
+    
+    public ArrayList<Device> getDevice()
+    {
+        ArrayList<Device> devs = new ArrayList();        
+        try
+        {
+            Connection connect = conn.use();
+            Statement stmt = connect.createStatement();
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM device");
+
+            while (rs.next())
+            {
+                devs.add(new Device(rs.getString(2), rs.getString(3), 
+                                    rs.getString(4), rs.getString(5), 
+                                    rs.getString(6), rs.getString(7), 
+                                    rs.getInt(8), rs.getDate(9), rs.getDate(10), 
+                                    rs.getInt(11)));
+            }
+
+            conn.release(connect);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        
+        return devs;
     }
 }

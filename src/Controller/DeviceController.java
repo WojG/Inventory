@@ -7,6 +7,7 @@ package Controller;
 import Broker.DeviceBroker;
 import Container.Device;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -73,5 +74,12 @@ public class DeviceController
             System.out.println("Error in delete device broker");
         }
 
+    }
+    
+    public ArrayList<Device> getDevice()
+    {
+        DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
+        
+        return dBroker.getDevice();
     }
 }

@@ -15,9 +15,15 @@ import javax.swing.table.AbstractTableModel;
  */
 public class DeviceModelController extends AbstractTableModel
 {
-    private ArrayList<Device> data;
+    private DeviceBroker db = DeviceBroker.getDeviceBroker();
     
-    public static final String[] columnNames = {};
+    private ArrayList<Device> data;
+        
+    public static final String[] columnNames = 
+    {
+        "Brand", "Model", "Serial Number", "Computer Name", "Location", 
+        "Asset Tag", "Cost", "Start Date", "End Date", "Term"
+    };
         
     public DeviceModelController(ArrayList<Device> data)
     {
