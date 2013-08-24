@@ -4,8 +4,6 @@
  */
 package inventory;
 
-import Controller.DeviceController;
-import Interface.DeviceInterface;
 import Interface.Interface;
 import java.sql.Date;
 import javax.swing.SwingUtilities;

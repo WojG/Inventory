@@ -24,10 +24,8 @@ public class DeviceInterface
     public DeviceInterface()
     {
         devicePanel = new JPanel(new BorderLayout());
-        
-        DeviceController dc = new DeviceController();
-        
-        table = new JTable(new DeviceModelController(dc.getDevice()));
+                
+        table = new JTable(new DeviceModelController(new DeviceController().getDevice()));
         
         scrollPane = new JScrollPane(table);
     }

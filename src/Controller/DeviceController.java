@@ -77,9 +77,7 @@ public class DeviceController
     }
     
     public ArrayList<Device> getDevice()
-    {
-        DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
-        
-        return dBroker.getDevice();
+    {        
+        return DeviceBroker.getDeviceBroker().getDevice();
     }
 }

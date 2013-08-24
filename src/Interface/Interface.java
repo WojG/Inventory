@@ -18,6 +18,9 @@ public class Interface
         
     }
     
+    // gui panels 
+    
+    // put the GUI panels together in a layout manager
     public void createAndShowGUI()
     {
         JFrame.setDefaultLookAndFeelDecorated(true);
