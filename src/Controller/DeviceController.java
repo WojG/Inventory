@@ -16,19 +16,38 @@ import java.util.ArrayList;
 public class DeviceController
 {
 
+    private String brand, model, serialNumber, compName, location, assetTag;
+    private int cost, term;
+    private Date start, end;
+    
     public DeviceController()
     {
+        // default constructor
     }
-
-    public void addDevice(String brand, String model, String serialNumber,
+    
+    public DeviceController(String brand, String model, String serialNumber,
             String compName, String location, String assetTag,
             int cost, Date start, Date end, int term)
     {
-        Device dev = new Device(brand, model, serialNumber, compName,
-                location, assetTag, cost, start, end, term);
+        this.brand = brand;
+        this.model = model;
+        this.serialNumber = serialNumber;
+        this.compName = compName;
+        this.location = location;
+        this.assetTag = assetTag;
+        this.cost = cost;
+        this.start = start;
+        this.end = end;
+        this.term = term;        
+    }
 
+    public void addDevice()
+    {
+        Device dev = new Device(brand, model, serialNumber, compName, location, 
+                                assetTag, cost, start, end, term);
+        
         DeviceBroker dBroker = DeviceBroker.getDeviceBroker();
-
+        
         if (dBroker.addDevice(dev) > 0)
         {
             System.out.println("Row Added Successfully.");
@@ -39,9 +58,7 @@ public class DeviceController
         }
     }
 
-    public void updateDevice(int dID, String brand, String model, String serialNumber,
-            String compName, String location, String assetTag,
-            int cost, Date start, Date end, int term)
+    public void updateDevice(int dID)
     {
         Device dev = new Device(brand, model, serialNumber, compName, location,
                 assetTag, cost, start, end, term);

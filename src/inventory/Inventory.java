@@ -4,6 +4,8 @@
  */
 package inventory;
 
+import Container.Device;
+import Controller.DeviceController;
 import Interface.Interface;
 import java.sql.Date;
 import javax.swing.SwingUtilities;
@@ -31,8 +33,8 @@ public class Inventory
         
         Date sqlDate = new Date(dt.getMillis());
         
-        String brand = "HP";
-        String model = "Compaq";
+        String brand = "Asus";
+        String model = "N53SV";
         String sn = "Test";
         String compName = "Test";
         String location = "TE1226";
@@ -42,21 +44,26 @@ public class Inventory
         Date end = sqlDate;
         int term = 36;
         
-        //DeviceController dc = new DeviceController();
-       // dc.addDevice(brand, model, sn, compName, location, assetTag, cost, start, end, term);
+        String locationNew = "CB2014";
+        
+     /*   DeviceController dc = new DeviceController(brand, model, sn, compName, 
+                                                   locationNew, assetTag, cost, 
+                                                   start, end, term);*/
+     //   dc.addDevice();
         
        // String brandNew = "Lenovo";
         
-       // dc.updateDevice(2, brandNew, model, sn, compName, location, assetTag, cost, start, end, term);
-      // dc.deleteDevice(2);
+      //  dc.updateDevice(2);
+       DeviceController dc = new DeviceController();
+       dc.deleteDevice(2);
         
-        SwingUtilities.invokeLater(new Runnable()
+      /*  SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
             {
                 Interface i = new Interface();
                 i.createAndShowGUI();
             }
-        });
+        });*/
     }
 }
