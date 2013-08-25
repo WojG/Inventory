@@ -54,16 +54,17 @@ public class Inventory
        // String brandNew = "Lenovo";
         
       //  dc.updateDevice(2);
-       DeviceController dc = new DeviceController();
-       dc.deleteDevice(2);
+   //    DeviceController dc = new DeviceController();
+    //   dc.deleteDevice(2);
         
-      /*  SwingUtilities.invokeLater(new Runnable()
+        SwingUtilities.invokeLater(new Runnable()
         {
+            @Override
             public void run()
             {
                 Interface i = new Interface();
                 i.createAndShowGUI();
             }
-        });*/
+        });
     }
 }

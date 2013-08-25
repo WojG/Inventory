@@ -52,10 +52,10 @@ public class DeviceController
         {
             System.out.println("Row Added Successfully.");
         }
-        else
+      /*  else
         {
             System.out.println("Error in add device broker.");
-        }
+        }*/
     }
 
     public void updateDevice(int dID)
@@ -70,10 +70,10 @@ public class DeviceController
             System.out.println("Row Updated Successfully.");
         }
         
-        else   
+     /*   else   
         {
             System.out.println("Error in update device broker");
-        }
+        }*/
 
     }
     
@@ -86,10 +86,10 @@ public class DeviceController
             System.out.println("Row Deleted Successfully.");
         }
         
-        else   
+    /*    else   
         {
             System.out.println("Error in delete device broker");
-        }
+        }*/
 
     }
     

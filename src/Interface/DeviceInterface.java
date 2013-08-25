@@ -4,9 +4,10 @@
  */
 package Interface;
 
-import Controller.DeviceController;
 import Controller.DeviceModelController;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,24 +18,52 @@ import javax.swing.JTable;
  */
 public class DeviceInterface
 {
-    private JPanel devicePanel;
+    private JPanel devicePanel, tablePanel, buttonPanel;
+    private JButton add, update, delete;
     private JTable table;
     private JScrollPane scrollPane;
     
     public DeviceInterface()
     {
-        devicePanel = new JPanel(new BorderLayout());
-                
-        table = new JTable(new DeviceModelController(new DeviceController().getDevice()));
+        
+    }
+    
+    public JPanel deviceButtons()
+    {
+        add = new JButton("Add");
+        update = new JButton("Update");
+        delete = new JButton("Delete");
+        
+        buttonPanel = new JPanel(new GridLayout(0,1));
+        
+        buttonPanel.add(add);
+        buttonPanel.add(update);
+        buttonPanel.add(delete);
+        
+        return buttonPanel;
+    }
+    
+    public JPanel deviceTable()
+    {
+        tablePanel = new JPanel(new BorderLayout());
+        
+        table = new JTable(new DeviceModelController());
         
         scrollPane = new JScrollPane(table);
+        
+        tablePanel.add(scrollPane);
+        
+        return tablePanel;
     }
     
-    public JPanel displayTable()
+    public JPanel createDevicePanel()
     {
-        devicePanel.add(scrollPane);
+        devicePanel = new JPanel(new BorderLayout());
+        
+        devicePanel.add(deviceTable(), BorderLayout.CENTER);
+        devicePanel.add(deviceButtons(), BorderLayout.EAST);
+        
         return devicePanel;
     }
-    
     
 }

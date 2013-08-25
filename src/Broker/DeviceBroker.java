@@ -5,7 +5,6 @@
 package Broker;
 
 import Container.Device;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,6 +68,7 @@ public class DeviceBroker
         }
         catch (SQLException ex)
         {
+            System.out.println("Error in add device: ");
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -116,6 +116,7 @@ public class DeviceBroker
         }
         catch (SQLException ex)
         {
+            System.out.println("Error in update device: ");
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -128,18 +129,25 @@ public class DeviceBroker
         try
         {
             Connection connect = conn.use();
+            
+            String SQLcheck = "SELECT * FROM device WHERE deviceID = "+dID+";";
+            
+            PreparedStatement check = connect.prepareStatement(SQLcheck);
+            
+            if (check.execute())
+            {
+                String SQL = "DELETE FROM device WHERE deviceID = " + dID + ";";
 
-            String SQL = "DELETE FROM device WHERE deviceID = " + dID + ";";
+                PreparedStatement psDelete = connect.prepareStatement(SQL);
 
-            PreparedStatement psDelete = connect.prepareCall(SQL);
-
-            rowsDeleted = psDelete.executeUpdate();
-
-            psDelete.close();
-            conn.release(connect);
+                rowsDeleted = psDelete.executeUpdate();
+                psDelete.close();
+                conn.release(connect);
+            }
         }
         catch (SQLException ex)
         {
+            System.out.println("Error in delete device: ");
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -169,6 +177,7 @@ public class DeviceBroker
         }
         catch (SQLException ex)
         {
+            System.out.println("Error in get device: ");
             Logger.getLogger(DeviceBroker.class.getName()).log(Level.SEVERE, null, ex);
         }       
         

@@ -24,11 +24,11 @@ public class Interface
     public void createAndShowGUI()
     {
         JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("[=] JButton Scores! [=]");
+        JFrame frame = new JFrame("Inventory");
 
         //Create and set up the content pane.
         DeviceInterface di = new DeviceInterface();
-        frame.setContentPane(di.displayTable());
+        frame.setContentPane(di.createDevicePanel());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(250, 190);

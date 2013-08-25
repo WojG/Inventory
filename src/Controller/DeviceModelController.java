@@ -17,7 +17,7 @@ public class DeviceModelController extends AbstractTableModel
 {
     private DeviceBroker db = DeviceBroker.getDeviceBroker();
     
-    private ArrayList<Device> data;
+    private ArrayList<Device> data = db.getDevice();
         
     public static final String[] columnNames = 
     {
@@ -25,9 +25,8 @@ public class DeviceModelController extends AbstractTableModel
         "Asset Tag", "Cost", "Start Date", "End Date", "Term"
     };
         
-    public DeviceModelController(ArrayList<Device> data)
+    public DeviceModelController()
     {
-        this.data = data;
     }
     
     @Override
