@@ -13,12 +13,30 @@ import java.sql.Date;
 public class Device
 {
 
-    private int cost, term;
+    private int cost, term, deviceID;
     private String brand, model, serialNumber, compName, location, assetTag;
     private Date start, end;
 
+    public Device(int deviceID, String brand, String model, String serialNumber,
+            String compName, String location, String assetTag, int cost, 
+            Date start, Date end, int term)
+    {
+        this.deviceID = deviceID;
+        this.brand = brand;
+        this.model = model;
+        this.serialNumber = serialNumber;
+        this.compName = compName;
+        this.location = location;
+        this.assetTag = assetTag;
+        this.cost = cost;
+        this.start = start;
+        this.end = end;
+        this.term = term;
+    }
+    
     public Device(String brand, String model, String serialNumber,
-            String compName, String location, String assetTag, int cost, Date start, Date end, int term)
+            String compName, String location, String assetTag, int cost, 
+            Date start, Date end, int term)
     {
         this.brand = brand;
         this.model = model;
@@ -32,6 +50,11 @@ public class Device
         this.term = term;
     }
 
+    public int getDeviceID()
+    {
+        return deviceID;
+    }
+    
     public void setBrand(String brand)
     {
         this.brand = brand;
