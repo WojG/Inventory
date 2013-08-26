@@ -7,6 +7,7 @@ package Interface;
 import Controller.DeviceModelController;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,8 +34,8 @@ public class DeviceInterface
         add = new JButton("Add");
         update = new JButton("Update");
         delete = new JButton("Delete");
-        
-        buttonPanel = new JPanel(new GridLayout(0,1));
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
         
         buttonPanel.add(add);
         buttonPanel.add(update);

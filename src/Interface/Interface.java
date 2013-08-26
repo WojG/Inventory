@@ -31,7 +31,7 @@ public class Interface
         frame.setContentPane(di.createDevicePanel());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(250, 190);
+        frame.pack();
         frame.setVisible(true);
 
     }
