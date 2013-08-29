@@ -15,32 +15,31 @@ import javax.swing.table.AbstractTableModel;
  */
 public class DeviceModelController extends AbstractTableModel
 {
+
     private DeviceBroker db = DeviceBroker.getDeviceBroker();
-    
     private ArrayList<Device> data = db.getDevice();
-        
-    public static final String[] columnNames = 
+    public static final String[] columnNames =
     {
-        "Brand", "Model", "Serial Number", "Computer Name", "Location", 
+        "Brand", "Model", "Serial Number", "Computer Name", "Location",
         "Asset Tag", "Cost", "Start Date", "End Date", "Term"
     };
-        
+
     public DeviceModelController()
     {
     }
-    
+
     @Override
     public int getColumnCount()
     {
         return columnNames.length;
     }
-    
+
     @Override
     public String getColumnName(int column)
     {
         return columnNames[column];
     }
-    
+
     @Override
     public int getRowCount()
     {
@@ -52,9 +51,11 @@ public class DeviceModelController extends AbstractTableModel
     {
         Device dev = data.get(rowIndex);
         if (dev == null)
+        {
             return null;
-        
-        switch(columnIndex)
+        }
+
+        switch (columnIndex)
         {
             case 0:
                 return dev.getBrand();
@@ -80,4 +81,6 @@ public class DeviceModelController extends AbstractTableModel
                 return null;
         }
     }
+    
+    
 }

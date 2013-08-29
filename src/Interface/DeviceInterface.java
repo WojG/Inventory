@@ -5,12 +5,12 @@
 package Interface;
 
 import Controller.DeviceModelController;
-import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -35,10 +35,10 @@ public class DeviceInterface
         update = new JButton("Update");
         delete = new JButton("Delete");
         
-        buttonPanel = new JPanel(new MigLayout("",
-                                               "",
-                                               "[]10[]10[]"));
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+        buttonPanel = new JPanel(new MigLayout("", // layout constraints
+                                               "", // column constriants
+                                               "[]10[]10[]")); // row constraints
+       // buttonPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
         buttonPanel.add(add, "growx,wrap");
         buttonPanel.add(update, "growx,wrap");
         buttonPanel.add(delete, "growx");
@@ -48,25 +48,27 @@ public class DeviceInterface
     
     public JPanel deviceTable()
     {        
-        table = new JTable(new DeviceModelController());        
+        table = new JTable(new DeviceModelController());     
+        
         scrollPane = new JScrollPane(table);
         
-        tablePanel = new JPanel(new MigLayout());
-        tablePanel.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        tablePanel.add(scrollPane);
+        tablePanel = new JPanel(new MigLayout("", // layout constraints
+                                              "[grow]", // column constriants
+                                              "[grow,top]")); // row constraints
+        tablePanel.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        tablePanel.add(scrollPane,"grow");
         
         return tablePanel;
     }
     
     public JPanel createDevicePanel()
     {
-        devicePanel = new JPanel(new MigLayout("", 
-                                               "[]10[]",
-                                               "[top]"));        
-        devicePanel.add(deviceTable(), "growx,growy");
+        devicePanel = new JPanel(new MigLayout("", // layout constraints
+                                               "[grow]10[]", // column constriants
+                                               "[grow,top]")); // row constraints
+        devicePanel.add(deviceTable(), "grow");
         devicePanel.add(deviceButtons());
         
         return devicePanel;
-    }
-    
+    }    
 }
