@@ -35,7 +35,9 @@ public class DeviceInterface
         update = new JButton("Update");
         delete = new JButton("Delete");
         
-        buttonPanel = new JPanel(new MigLayout());
+        buttonPanel = new JPanel(new MigLayout("",
+                                               "",
+                                               "[]10[]10[]"));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
         buttonPanel.add(add, "growx,wrap");
         buttonPanel.add(update, "growx,wrap");
@@ -61,7 +63,7 @@ public class DeviceInterface
         devicePanel = new JPanel(new MigLayout("", 
                                                "[]10[]",
                                                "[top]"));        
-        devicePanel.add(deviceTable());
+        devicePanel.add(deviceTable(), "growx,growy");
         devicePanel.add(deviceButtons());
         
         return devicePanel;

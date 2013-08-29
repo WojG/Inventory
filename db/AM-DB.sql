@@ -28,15 +28,16 @@ CREATE TABLE `device` (
   `deviceID` int(11) NOT NULL AUTO_INCREMENT,
   `Brand` varchar(45) DEFAULT NULL,
   `Model` varchar(45) DEFAULT NULL,
-  `Serial Number` varchar(45) DEFAULT NULL,
-  `Computer Name` varchar(45) DEFAULT NULL,
+  `Serial_Number` varchar(45) DEFAULT NULL,
+  `Computer_Name` varchar(45) DEFAULT NULL,
   `Location` varchar(45) DEFAULT NULL,
-  `Asset Tag` varchar(45) DEFAULT NULL,
-  `Lease` int(11) DEFAULT NULL,
-  PRIMARY KEY (`deviceID`),
-  KEY `fk_device_lease_idx` (`Lease`),
-  CONSTRAINT `fk_device_lease` FOREIGN KEY (`Lease`) REFERENCES `lease` (`leaseID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Asset_Tag` varchar(45) DEFAULT NULL,
+  `Cost` int(11) DEFAULT NULL,
+  `Start_Date` varchar(45) DEFAULT NULL,
+  `End_Date` varchar(45) DEFAULT NULL,
+  `Term` int(11) DEFAULT NULL,
+  PRIMARY KEY (`deviceID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,33 +46,8 @@ CREATE TABLE `device` (
 
 LOCK TABLES `device` WRITE;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
+INSERT INTO `device` VALUES (1,'Lenovo','Compaq','Test','TE1226-01PC','TE1226','Staff',1136,'2013/12/12','2016/12/12',36);
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `lease`
---
-
-DROP TABLE IF EXISTS `lease`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lease` (
-  `leaseID` int(11) NOT NULL AUTO_INCREMENT,
-  `Cost` decimal(5,2) DEFAULT NULL,
-  `Start Date` datetime DEFAULT NULL,
-  `End Date` datetime DEFAULT NULL,
-  `Term` int(11) DEFAULT NULL,
-  PRIMARY KEY (`leaseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lease`
---
-
-LOCK TABLES `lease` WRITE;
-/*!40000 ALTER TABLE `lease` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lease` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -112,4 +88,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-09 18:14:57
+-- Dump completed on 2013-08-29  8:59:51
