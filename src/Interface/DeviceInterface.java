@@ -5,13 +5,13 @@
 package Interface;
 
 import Controller.DeviceModelController;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -34,24 +34,23 @@ public class DeviceInterface
         add = new JButton("Add");
         update = new JButton("Update");
         delete = new JButton("Delete");
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
         
-        buttonPanel.add(add);
-        buttonPanel.add(update);
-        buttonPanel.add(delete);
+        buttonPanel = new JPanel(new MigLayout());
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+        buttonPanel.add(add, "growx,wrap");
+        buttonPanel.add(update, "growx,wrap");
+        buttonPanel.add(delete, "growx");
         
         return buttonPanel;
     }
     
     public JPanel deviceTable()
-    {
-        tablePanel = new JPanel(new BorderLayout());
-        
-        table = new JTable(new DeviceModelController());
-        
+    {        
+        table = new JTable(new DeviceModelController());        
         scrollPane = new JScrollPane(table);
         
+        tablePanel = new JPanel(new MigLayout());
+        tablePanel.setBorder(BorderFactory.createLineBorder(Color.yellow));
         tablePanel.add(scrollPane);
         
         return tablePanel;
@@ -59,10 +58,11 @@ public class DeviceInterface
     
     public JPanel createDevicePanel()
     {
-        devicePanel = new JPanel(new BorderLayout());
-        
-        devicePanel.add(deviceTable(), BorderLayout.CENTER);
-        devicePanel.add(deviceButtons(), BorderLayout.EAST);
+        devicePanel = new JPanel(new MigLayout("", 
+                                               "[]10[]",
+                                               "[top]"));        
+        devicePanel.add(deviceTable());
+        devicePanel.add(deviceButtons());
         
         return devicePanel;
     }

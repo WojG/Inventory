@@ -25,7 +25,7 @@ public class Inventory
      */
     public static void main(String[] args)
     {        
-        int year = 2013, month = 11, day = 12;
+    /*    int year = 2013, month = 11, day = 12;
         
         DateTime dt = new DateTime(year, month, day, 12, 0, 0, 000);
         
@@ -46,16 +46,16 @@ public class Inventory
         
         String locationNew = "CB2014";
         
-     /*   DeviceController dc = new DeviceController(brand, model, sn, compName, 
+        DeviceController dc = new DeviceController(brand, model, sn, compName, 
                                                    locationNew, assetTag, cost, 
-                                                   start, end, term);*/
-     //   dc.addDevice();
+                                                   start, end, term);
+        dc.addDevice();
         
-       // String brandNew = "Lenovo";
+        String brandNew = "Lenovo";
         
-      //  dc.updateDevice(2);
-   //    DeviceController dc = new DeviceController();
-    //   dc.deleteDevice(2);
+        dc.updateDevice(2);
+        DeviceController dc = new DeviceController();
+        dc.deleteDevice(2);*/
         
         SwingUtilities.invokeLater(new Runnable()
         {

@@ -23,7 +23,7 @@ public class Interface
     // put the GUI panels together in a layout manager
     public void createAndShowGUI()
     {
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame.setDefaultLookAndFeelDecorated(false);
         JFrame frame = new JFrame("Inventory");
 
         //Create and set up the content pane.
