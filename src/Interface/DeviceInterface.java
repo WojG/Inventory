@@ -5,6 +5,8 @@
 package Interface;
 
 import Controller.DeviceModelController;
+import Listeners.TableMouseListener;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -49,7 +51,7 @@ public class DeviceInterface
     public JPanel deviceTable()
     {        
         table = new JTable(new DeviceModelController());     
-        
+        table.addMouseListener(new TableMouseListener(table));
         scrollPane = new JScrollPane(table);
         
         tablePanel = new JPanel(new MigLayout("", // layout constraints
